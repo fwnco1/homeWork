@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title></title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <script src="./vue.js"></script>
+    </head>
+    <body>
+        <div id="app">
+            <!--.native的作用是可以让子组件直接使用父组件的方法,省略了$emit声明-->
+            <child @click.native="handle"></child>
+        </div>
+        <script>
+            Vue.component("child",{
+                template:"<div>我要绑定原生事件</div>"
+            })
+            var vm = new Vue({
+                el: '#app',
+                data: {
+
+                },
+                methods: {
+                    handle(){
+                        alert('我是父组件的click事件')
+                    }
+                },
+            })
+        </script>
+    </body>
+</html>

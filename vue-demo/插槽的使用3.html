@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title></title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <script src="./vue.js"></script>
+    </head>
+    <body>
+        <div id="app">
+                <contents>
+                        <header>我是头部header</header>
+                       <footer>我是底部footer</footer>
+                   </contents>
+
+        </div>
+        <script>
+            Vue.component('contents',{
+                template:
+                `
+            <div>
+                <slot></slot>
+                <div>我是主体内容部分</div>
+                <slot></slot>
+            </div>
+            `
+            })
+            var vm = new Vue({
+                el: '#app',
+                data: {
+
+                }
+            })
+        </script>
+    </body>
+</html>

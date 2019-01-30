@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title></title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <script src="./vue.js"></script>
+        <style>
+            *{
+                margin: 0;
+                padding: 0;
+                list-style: none
+            }
+        </style>
+    </head>
+    <body>
+        <div id="app">
+            <button @click='addData'>点击添加对象数据</button>
+            <h3>往对象里添加方法</h3>
+            <ul>
+                <li v-for="(val,key,index) of obj">
+                    值:{{val}}-----key:{{key}}_______索引:{{index}}
+                </li>
+            </ul>
+
+            <button @click="addData2">点击添加数组数据</button>
+            <h3>王数组里添加方法</h3>
+            <ul>
+                <li v-for="(item,index) of list">
+                    {{item}}
+                </li>
+            </ul>
+        </div>
+        <script>
+            var vm = new Vue({
+                el: '#app',
+                data: {
+                    obj:{
+                        title:'hello world',
+                        name:'zhangsan',
+                        age:17,
+                        sex:'男'
+                    },
+                    list:[1,2,3,4]
+                },
+                methods: {
+                    addData(){
+                        Vue.set(this.obj,'skin'+Math.random(),'red')
+                    },
+                    addData2(){
+                        vm.$set(vm.list,0,'hello wrold')
+                        //三个参数的说明
+                        //参数1 是目标,往哪个对象或者数组里面添加内容
+                        //参数2 是数组的索引或者对象的key
+                        //参数3 是往数组或者对象里添加的具体的val值
+                    }
+                },
+            })
+        </script>
+    </body>
+</html>

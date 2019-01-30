@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title></title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <script src="./vue.js"></script>
+    </head>
+    <body>
+        <div id="app"></div>
+        <script>
+            var vm = new Vue({
+                el: '#app',
+                data: {
+                    msg:"你好世界",
+                    msg2:"我需要改变"
+                },
+                template:"<p >{{msg}}</p>",
+                beforeCreate() {
+                    console.log('beforeC');
+                    
+                },
+                created() {
+                    console.log('created');
+                    console.log(this.$el);
+                    
+                    
+                },
+                beforeMount() {
+                    console.log('beforeM');
+                    
+                },
+                mounted() {
+                    console.log('mounted');
+                    console.log(this.$el);
+                    this.msg=this.msg2;
+                    
+                    
+                },
+                beforeDestroy() {
+                    console.log('beforedestory');
+                    
+                },
+                destroyed() {
+                    console.log("destroyed");
+                    
+                },
+                beforeUpdate() {
+                    console.log("beforeU");
+                    
+                },
+                updated() {
+                    console.log("updated");
+                    
+                },
+            })
+        </script>
+    </body>
+</html>
