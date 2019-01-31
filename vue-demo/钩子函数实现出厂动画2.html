@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title></title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src="./vue.js"></script>
+    <link rel="stylesheet" href="./animate.css">
+</head>
+
+<body>
+    <div id="app">
+        <transition @before-leave="bl" @leave="leave" @after-leave="al">
+            <div v-show="flag">hello world</div>
+        </transition>
+        <button @click="change">切换动画</button>
+    </div>
+    <script>
+        var vm = new Vue({
+            el: '#app',
+            data: {
+                flag: true
+            },
+            methods: {
+                change() {
+                    this.flag = !this.flag
+                },
+                bl(el) {
+                    el.style.color = 'red'
+                },
+                leave(el) {
+                    setTimeout(() => {
+                        el.style.fontSize = "50px"
+                        el.style.backgroundColor = "black"
+                    }, 2000)
+
+                    setTimeout(() => {
+                        done()
+                    }, 4000)
+                },
+                al(el){
+                    el.style.fontSize='16px';
+                    el.style.backgroundColor="blue"
+                }
+            },
+        })
+    </script>
+</body>
+
+</html>

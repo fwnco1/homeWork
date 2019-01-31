@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title></title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <script src="./vue.js"></script>
+        <style>
+            .v-enter,.v-leave-to{
+                opacity: 0;
+            }
+            .v-enter-avtive,.v-leave-active{
+                transition: all .5s ease-in-out
+            }
+        
+        
+        
+        </style>
+    </head>
+    <body>
+        <div id="app">
+            <transition >
+                <div v-show="flag">hello world</div>
+            </transition>
+            <button @click="change">点击切换</button>
+        </div>
+        <script>
+            var vm = new Vue({
+                el: '#app',
+                data: {
+                    flag:true
+                },
+                methods: {
+                    change(){
+                       this.flag=!this.flag 
+                    }
+                },
+            })
+        </script>
+    </body>
+</html>

@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title></title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <script src="./vue.js"></script>
+        <link rel="stylesheet" href="./animate.css">
+        <style>
+        .fade-enter,.fade-leave-to{
+            opacity: 0;
+        }
+        .fade-enter-active,.fade-leave-active{
+            transition: all 3s ease
+        }
+        </style>
+    </head>
+    <body>
+        <div id="app">
+            <h2>增加appear 实现一进来就有动画效果</h2>
+            <!--type="transition" type 设置以哪个动画时长 type="transition"是以transition动画时长-->
+            <transition
+            appear
+            type="transition"
+            name="fade"
+            appear-active-class="animated shake"
+            enter-active-class="animated swing fade-enter-active"
+            leave-active-class="animated shake fade-leave-active"
+            >
+            <div v-show="flag">hello world</div>
+            </transition>
+            <button @click="change">切换动画</button>
+        </div>
+        <script>
+            var vm = new Vue({
+                el: '#app',
+                data: {
+                    flag:true
+                },
+                methods: {
+                    change(){
+                        this.flag=!this.flag
+                    }
+                   
+                },
+            })
+        </script>
+    </body>
+</html>

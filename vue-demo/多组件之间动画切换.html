@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title></title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <script src="./vue.js"></script>
+        <style>
+            .fade-enter{
+        opacity: 0;
+        transform: translateX(180px)
+    }
+    .fade-enter-active {
+        /* transition: all 2s ease-in; */
+        transition: all 2s ;
+
+    }
+    .fade-leave-to {
+        opacity: 0;
+        transform: translateX(180px)
+    }
+    .fade-leave-active {
+        /* transition: all 2s ease-in; */
+        transition: all 2s ; 
+
+    }
+        </style>
+    </head>
+    <body>
+        <div id="app">
+            <transition mode="out-in" name="fade">
+                <text1 v-if="flag"></text1>
+                <text2 v-else></text2>
+            </transition>
+            <button @click="change">切换组件</button>
+        </div>
+        <script>
+            let text1={
+                template:'<h1>我是1号组件</h1>'
+            }
+            let text2={
+                template:'<h1>我是2号组件</h1>'
+            }
+            var vm = new Vue({
+                el: '#app',
+                data: {
+                    flag:true
+                },
+                methods: {
+                    change(){
+                        this.flag=!this.flag
+                    }
+                },
+                components:{
+                    text1,
+                    text2
+                }
+            })
+        </script>
+    </body>
+</html>
