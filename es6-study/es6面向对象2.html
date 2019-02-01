@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        class User {
+            //对象的constructor属性返回创建该对象的函数的引用
+            constructor(name, pass) {
+                this.name = name;
+                this.pass = pass;
+            }
+            login() {
+                alert('成功')
+            }
+        }
+        //extends继承父类
+        class VIPUser extends User{
+            constructor(name,pass,level){
+                super(name,pass)
+
+                this.level=level
+            }
+            download(){
+                alert('下载')
+            }
+        }
+
+        let u=new VIPUser('blue','123456')
+
+        u.login()
+        u.download()
+
+    </script>
+</body>
+
+</html>

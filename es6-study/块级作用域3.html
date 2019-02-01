@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        window.onload=function(){
+            var aBtn=document.getElementsByTagName('input')
+            //let有块级作用域,所以不会造成污染,循环绑定事件时建议用let
+            for (let i = 0; i < aBtn.length; i++) {
+                aBtn[i].onclick=function(){
+                    alert(i)
+                }
+                
+            }
+        }
+    </script>
+    <input type="button" value="a">
+    <input type="button" value="b">
+    <input type="button" value="c">
+</body>
+</html>
