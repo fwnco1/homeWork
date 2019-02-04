@@ -1,0 +1,7 @@
+.css {
+  color: blue;
+  background: url(../img/1.jpg);
+  width: 275px;
+  height: 367px;
+  background-size: cover
+}
