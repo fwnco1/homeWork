@@ -1,62 +1,30 @@
-const path = require('path')
+var path = require('path')
 
-const webpack = require('webpack')
-
-const HtmlWebpackPlugin = require('html-webpack-plugin')
+var htmlWebpackPlugin = require('html-webpack-plugin')
 
 module.exports = {
-        entry:'./src/main.js',// entry是指定打包文件的入口, 可以使用相对路径
-        output: {
-            path:path.join(__dirname,'dist'),// output是指输出的目录, 必须是绝对路径
-            filename:'bundle.js',
-        },
-        mode:'development',
-        devServer: {
-            // contentBase: "./src", // 托管的根目录
-            hot: true, // 我要开启或关闭HMR
-            open: true, // 自动打开浏览器
-            port: 4000 // 设置devServer的端口号
-          },
-        plugins: [
-            // 装了插件表示当前项目有资格开启HMR
-            new webpack.HotModuleReplacementPlugin(),
-             // 如果不传入任何配置选项, 默认也会创建一个index.html托管在服务器根路径
-	        // 只不过这个HTML是空的, title默认是webpack app
-            new HtmlWebpackPlugin({
-                title: '传智大法好!!!', // 如果模板中有title, 会覆盖这里的配置
-                template: './src/index.html'
-              })
-          ],
-        module: {
-            rules: [
-              {
-                test: /\.css$/,
-                use: ['style-loader', 'css-loader']
-              },
-              {
-                test: /\.less$/,
-                use: ['style-loader', 'css-loader', 'less-loader']
-              },
-              {
-                test: /\.scss$/,
-                use: ['style-loader', 'css-loader', 'sass-loader']
-              },
-              {
-                //处理图片路径的loader
-                test: /\.(jpg|gif|png)$/,
-                use:"url-loader?limit=81920&name=[hash:8]-[name].[ext]"
-              },
-              {
-                //处理字体图标的loader
-                test: /.(eot|svg|ttf|woff|woff2)$/,
-                use:"url-loader"
-              },
-              { test: /\.js$/, use: 'babel-loader', exclude: /node_modules/ }
-            ]
-          },
-        resolve:{
-          alias:{
-            "vue$":"vue/dist/vue.js"
-          }
-        }  
+    entry: path.join(__dirname, './src/main.js'),
+    output: {
+        path: path.join(__dirname, './dist'), // 输出路径
+        filename: 'bundle.js' // 指定输出文件的名称
+    },
+    plugins: [ // 所有webpack  插件的配置节点
+        new htmlWebpackPlugin({
+            template: path.join(__dirname, './src/index.html'), // 指定模板文件路径
+            filename: 'index.html' // 设置生成的内存页面的名称
+        })
+    ],
+    module: { // 配置所有第三方loader 模块的
+        rules: [ // 第三方模块的匹配规则
+            { test: /\.css$/, use: ['style-loader', 'css-loader'] }, // 处理 CSS 文件的 loader
+            // { test: /\.less$/, use: ['style-loader', 'css-loader', 'less-loader'] }, // 处理 less 文件的 loader
+            // { test: /\.scss$/, use: ['style-loader', 'css-loader', 'sass-loader'] }, // 处理 scss 文件的 loader
+            // { test: /\.(jpg|png|gif|bmp|jpeg)$/, use: 'url-loader?limit=7631&name=[hash:8]-[name].[ext]' }, // 处理 图片路径的 loader
+            // // limit 给定的值，是图片的大小，单位是 byte， 如果我们引用的 图片，大于或等于给定的 limit值，则不会被转为base64格式的字符串， 如果 图片小于给定的 limit 值，则会被转为 base64的字符串
+            // { test: /\.(ttf|eot|svg|woff|woff2)$/, use: 'url-loader' }, // 处理 字体文件的 loader 
+            { test: /\.js$/, use: 'babel-loader', exclude: /node_modules/ }, // 配置 Babel 来转换高级的ES语法
+            { test: /\.vue$/, use: 'vue-loader' } // 处理 .vue 文件的 loader
+        ]
+    },
+    mode: 'development'
 }
